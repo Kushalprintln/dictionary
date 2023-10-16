@@ -1,0 +1,218 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+header{
+    padding: 0px 5%;
+    display: flex;
+    height: 80px;
+    background-color: lightblue;
+    align-items: center;
+    gap: 20px;
+}
+header img{
+    width: 50px;
+}
+main{
+    padding: 0px 5%;
+}
+.search-box{
+    border: 2px solid black;
+    padding: 10px 0;
+}
+.search-nav{
+    display: flex;
+    align-items: center;
+}
+.search-nav .search-sec {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    min-width: 480px;
+    height: 60px;
+    justify-content: space-between;
+    border-radius: 30px;
+    gap: 8px;
+    padding: 5px 5px 5px 20px;
+    background: #ADBCE6;
+    margin: 0 auto;
+}
+.search-nav .search-sec input{
+    width: 100%;
+    height: 80%;
+    font-size: 30px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.search-nav .search-sec button{
+    width: 50px;
+    height: 50px;
+    /* background: transparent; */
+    border: none;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+.search-nav .search-sec button img{
+    width: 90%;
+}
+.search-nav .btn,.btn{
+    height: 36px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 0 10px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.search-box .display{
+    border-radius: 30px;
+    width: 100%;
+    margin: 10px 0px;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+}
+.search-box .display .heading{
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+.search-box .display .meaning{
+    margin: 20px;
+}
+.search-box .display .meaning .meaning-list{
+    margin: 8px 0;
+    line-height: 1.5;
+}
+.search-box .display .meaning .meaning-list p{
+    font-style: italic;
+font-weight: bold
+}
+.search-box .display .meaning ol{
+    padding: 0 0 0 30px;
+}
+.history-box{
+    border: 2px solid black;
+}
+
+/* ----For history--- */
+.history-box .bar{
+    display: flex;
+    height:60px;
+    align-items: center;
+}
+.history-box .bar h1{
+    margin: 0px auto;
+    width: fit-content;
+}
+
+.scr-btn{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.scroll button img{
+    width: 100%;
+}
+.his-cards{
+    margin: 20px auto;
+    padding: 15px 18.5px;
+    width: fit-content;
+    max-width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    gap: 20px;
+    overflow: auto;
+    /* ------------------- */
+    /* border-radius: 30px; */
+    /* box-shadow: 0px 0px 15px rgba(0,0,0,0.2); */
+}
+.card{
+    width: 250px;
+    min-width: 250px;
+    height: 350px;
+    padding: 10px;
+    /* border: 1px solid black; */
+    /* ------------------------- */
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+}
+/* -----FOOTER------ */
+footer{
+    /* position: absolute;
+    bottom: 0; */
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue; 
+}
+/* -------MEDIA QUEARY ------*/
+@media screen and (max-width: 650px) {
+    .search-nav{
+        flex-direction: column;
+    }
+    .search-nav .btn{
+        margin: 5px 0px;
+        width: 80%;
+    }
+    .search-box .search-nav .search-sec {
+        width: 100%;
+        min-width: 100%;
+        height: 50px;
+        border-radius: 25px;
+    }
+    .search-box .search-nav .search-sec button{
+        width: 40px;
+        height: 40px;
+    }
+    .search-box .search-nav .search-sec input{
+        font-size: 20px;
+    }
+    header h1{
+        font-size: 1.5em;
+    }
+
+}
+@media screen and (max-width: 450px) {
+    .scroll{
+        display: none;
+    }
+    .his-cards{
+        flex-direction: column;
+        width: 100%;
+    }
+    .card{
+        width: 100%;
+        min-width: 100%;    
+    }
+}
+@media screen and (max-width: 416px) {
+    header img{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

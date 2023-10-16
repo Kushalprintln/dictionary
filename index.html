@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Dictionary</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <img src="./images/logo.png" alt="logo">
+        <h1>My Dictionary Application</h1>
+    </header>
+    <main>
+        <section class="search-box">
+            <nav class="search-nav">
+                <div class="search-sec">
+                    <input type="text" name="" id="srch" placeholder="Search For New Word..." value="fun">
+                    <button id="searchbtn">
+                        <img src="./images/search logo.png" alt="srchbtn">
+                    </button>
+                </div>
+                <button class="btn" id="history">History</button>
+            </nav>
+            <div class="display" id="display">
+                <div class="heading">
+                    <h1>Word : <span id="search-word">Search word</span></h1>
+                    <button id="speak"><img src="./images/volume-full-solid-24.png" alt="">
+                    </button>
+                </div>
+                <hr>
+                <div class="meaning">
+                    <div class="meaning-list">
+                        <p>noun</p>
+                        <ol>
+                            <li>meaning one</li>
+                            <li>meaning two</li>
+                            <p>somthing example</p>
+                            <p>somthing example</p>
+                        </ol>
+                    </div>
+    
+                </div>
+            </div>
+        </section>
+        <!-- ============================================== -->
+        <section class="history-box">
+            <nav class="bar">
+                <h1>HISTORY</h1>
+                <button class="btn" id="history">Search</button>
+            </nav>
+            <div class="his-cards">
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+                <div class="card">Text will be here</div>
+            </div>
+            <div class="scroll">
+                <button class="scr-btn"><img src="./images/left-arrow.png" alt=""></button>
+                <button class="scr-btn"><img src="./images/right-arrow.png" alt=""></button>
+            </div>
+        </section>
+    </main>
+    <footer>&#169; Kushal Dictionary</footer>
+    <script src="./Script.js"></script>
+</body>
+</html>
