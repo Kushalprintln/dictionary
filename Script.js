@@ -4,6 +4,23 @@ const inputword = document.getElementById('srch');
 const searchbtn = document.getElementById('searchbtn');
 const display = document.getElementById('display');
 const footer = document.getElementsByTagName('footer')[0];
+const hiscards = document.getElementsByClassName('his-cards')[0];
+
+const history = document.querySelector('#history');
+const searchBack = document.querySelector('#searchback');
+
+const searchSection = document.querySelector('.search-box');
+const hisSection = document.querySelector('.history-box');
+
+var Searchhistory = [];
+
+(function updateLocalStorage(){
+    if(localStorage.getItem('dic-his')){
+        Searchhistory = JSON.parse(localStorage.getItem('dic-his'));
+        createCards();
+    }
+})();
+
 const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
 
 // PUTTING EVENTLISTNER ON SEARCH BUTTON
@@ -56,7 +73,7 @@ async function meaning(word){
         
         // // INFO ON CONSOLE
         // console.log("Complete fetch data")
-        // console.table(actualdata);
+        // console.log(actualdata);
         // console.log(actualdata[0].phonetics)
         // console.log("Extracting meaning form fetch data")
         // console.table(meaningArray);
@@ -64,6 +81,16 @@ async function meaning(word){
         // console.log(extraInfo?"Contains extra Info":"No extra Info");
         
         creatdisplay(Sword,extraInfo,meaningArray,wordAudio);
+        let obj = {};
+        obj.word = Sword;
+        obj.meaning1 = meaningArray[0].definitions[0].definition;
+        obj.meaning2 = meaningArray[0].definitions[1].definition;
+        Searchhistory.unshift(obj);
+        localStorage.setItem('dic-his',JSON.stringify(Searchhistory));
+
+        checkLimit();
+        createCards()
+        // historyUpdate(obj);
     }
     catch(err){
         console.log(err);
@@ -71,7 +98,42 @@ async function meaning(word){
         errorWord(inputword.value);
     }
 }
+// THIS IS A RESURSIVE FUNCTION ON CLOSER;
+function createCards(){
+    hiscards.innerHTML = '';
+    for(let ele of Searchhistory){
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<h1>${ele.word}</h1>
+                            <hr>
+                    <div class="meaning-content">
+                    <h4>Meaning 1</h4>
+                        <p>${ele.meaning1}</p>
+                        <h4>Meaning 2</h4>
+                        <p>${ele.meaning2}</p>
+                    </div>`;
+        let delbtn = document.createElement('button');
+        delbtn.className = 'delete-btn'; 
+        delbtn.innerHTML = `<img src="./images/delete.png" alt="">`
+        delbtn.addEventListener('click',()=>{
+            let index = Searchhistory.indexOf(ele);
+            console.log(index);
 
+            // DELETING IN ARRAY
+            Searchhistory.splice(index,1);
+            localStorage.setItem('dic-his',JSON.stringify(Searchhistory));
+            createCards();;
+        })
+        card.appendChild(delbtn);
+        hiscards.append(card);
+    }
+}
+function checkLimit(){
+    if(Searchhistory.length === 11){
+        Searchhistory.splice(10,1);
+        localStorage.setItem('dic-his',JSON.stringify(Searchhistory));
+    }
+}
 function creatdisplay(Sword,extraInfo,meaningArray,audio){
     // BELOW LINE IS CREATING A LAYOUT FOR DISPLAYING DATA
     display.innerHTML = `<div class="heading">
@@ -187,3 +249,19 @@ function displayingFullData(meaningArray,meaning){
         meaning.append(meaningListDiv);
     }
 }
+/////ADDING AVENT LISTENERS;
+
+// const history = document.querySelector('#history');
+// const searchBack = document.querySelector('#searchback');
+
+// const searchSection = document.querySelector('.search-box');
+// const HisSection = document.querySelector('.history-box');
+
+history.addEventListener('click',()=>{
+    hisSection.classList.toggle('hide');
+    searchSection.classList.toggle('hide');
+})
+searchBack.addEventListener('click',()=>{
+    hisSection.classList.toggle('hide');
+    searchSection.classList.toggle('hide');
+})
