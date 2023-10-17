@@ -5,9 +5,12 @@ const searchbtn = document.getElementById('searchbtn');
 const display = document.getElementById('display');
 const footer = document.getElementsByTagName('footer')[0];
 const hiscards = document.getElementsByClassName('his-cards')[0];
-
+const emptycard = document.querySelector('.emptycard');
 const history = document.querySelector('#history');
 const searchBack = document.querySelector('#searchback');
+
+const left = document.getElementById('left');
+const right = document.getElementById('right');
 
 const searchSection = document.querySelector('.search-box');
 const hisSection = document.querySelector('.history-box');
@@ -30,7 +33,8 @@ const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
             alert('please enter something')
         }else{
             meaning(inputword.value);
-            footer.style.position = 'static';
+            inputword.value = '';
+            // footer.style.position = 'static';
         }
     })
 // }
@@ -101,32 +105,35 @@ async function meaning(word){
 // THIS IS A RESURSIVE FUNCTION ON CLOSER;
 function createCards(){
     hiscards.innerHTML = '';
-    for(let ele of Searchhistory){
-        let card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `<h1>${ele.word}</h1>
-                            <hr>
-                    <div class="meaning-content">
-                    <h4>Meaning 1</h4>
-                        <p>${ele.meaning1}</p>
-                        <h4>Meaning 2</h4>
-                        <p>${ele.meaning2}</p>
-                    </div>`;
-        let delbtn = document.createElement('button');
-        delbtn.className = 'delete-btn'; 
-        delbtn.innerHTML = `<img src="./images/delete.png" alt="">`
-        delbtn.addEventListener('click',()=>{
-            let index = Searchhistory.indexOf(ele);
-            console.log(index);
-
-            // DELETING IN ARRAY
-            Searchhistory.splice(index,1);
-            localStorage.setItem('dic-his',JSON.stringify(Searchhistory));
-            createCards();;
-        })
-        card.appendChild(delbtn);
-        hiscards.append(card);
-    }
+    if(Searchhistory.length === 0){
+        hiscards.append(emptycard);
+    }else{
+        for(let ele of Searchhistory){
+            let card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `<h1>${ele.word}</h1>
+                                <hr>
+                        <div class="meaning-content">
+                        <h4>Meaning 1</h4>
+                            <p>${ele.meaning1}</p>
+                            <h4>Meaning 2</h4>
+                            <p>${ele.meaning2}</p>
+                        </div>`;
+            let delbtn = document.createElement('button');
+            delbtn.className = 'delete-btn'; 
+            delbtn.innerHTML = `<img src="./images/delete.png" alt="">`
+            delbtn.addEventListener('click',()=>{
+                let index = Searchhistory.indexOf(ele);
+    
+                // DELETING IN ARRAY
+                Searchhistory.splice(index,1);
+                localStorage.setItem('dic-his',JSON.stringify(Searchhistory));
+                createCards();;
+            })
+            card.appendChild(delbtn);
+            hiscards.append(card);
+        }
+    }   
 }
 function checkLimit(){
     if(Searchhistory.length === 11){
@@ -138,7 +145,7 @@ function creatdisplay(Sword,extraInfo,meaningArray,audio){
     // BELOW LINE IS CREATING A LAYOUT FOR DISPLAYING DATA
     display.innerHTML = `<div class="heading">
                             <h1>Word : <span id="search-word">${Sword}</span></h1>
-                            <button id="speak"><img src="./images/volume-full-solid-24.png" alt=""></button> 
+                            <button id="speak"><img src="./images/icons8-speaker-100.png" alt=""></button> 
                         </div>
                         <hr>
                         <div class="meaning"></div>`;
@@ -257,6 +264,23 @@ function displayingFullData(meaningArray,meaning){
 // const searchSection = document.querySelector('.search-box');
 // const HisSection = document.querySelector('.history-box');
 
+
+// QUOTE API FUNCTION;
+const quote = document.querySelector('.quote h4');
+const author = document.querySelector('.quote .author');
+
+async function getquote(){
+    let quotes = await fetch('https://api.quotable.io/random');
+    let quoteData = await quotes.json();
+    quote.innerText = quoteData.content;
+    author.innerText = quoteData.author;
+}
+getquote();
+setInterval(()=>{
+    getquote();
+},60000);
+ 
+// ADDING EVENT LISTNERS;
 history.addEventListener('click',()=>{
     hisSection.classList.toggle('hide');
     searchSection.classList.toggle('hide');
@@ -264,4 +288,10 @@ history.addEventListener('click',()=>{
 searchBack.addEventListener('click',()=>{
     hisSection.classList.toggle('hide');
     searchSection.classList.toggle('hide');
+})
+left.addEventListener('click',()=>{
+    hiscards.scrollLeft -= 200;
+})
+right.addEventListener('click',()=>{
+    hiscards.scrollLeft += 200;
 })

@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Dictionary</title>
+    <title>Kushal Dictionary</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,7 +19,7 @@
         <section class="search-box">
             <nav class="search-nav">
                 <div class="search-sec">
-                    <input type="text" name="" id="srch" placeholder="Search For New Word..." value="fun">
+                    <input type="text" name="" id="srch" placeholder="Search For New Word...">
                     <button id="searchbtn">
                         <img src="./images/search logo.png" alt="srchbtn">
                     </button>
@@ -26,7 +29,7 @@
             <div class="display" id="display">
                 <div class="heading">
                     <h1>Word : <span id="search-word">Search word</span></h1>
-                    <button id="speak"><img src="./images/volume-full-solid-24.png" alt="">
+                    <button id="speak"><img src="./images/icons8-speaker-100.png" alt="">
                     </button>
                 </div>
                 <hr>
@@ -51,22 +54,23 @@
                 <button class="btn" id="searchback">Search</button>
             </nav>
             <div class="his-cards">
-                <div class="card">
-                    <h1>Search Word</h1>
+                <div class="card emptycard">
+                    <h1>History is Empty</h1>
                     <hr>
                     <div class="meaning-content">
-                        <h4>Meaning 1</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores voluptas tenetur, obcaecati \ quasi dolor non mollitia ipsa nulla similique saepe et!</p>
-                        <h4>Meaning 2</h4>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa mollitia quia facere molestias. Porro obcaecati impedit eaque odio rerum accusamus aut sed non iste! Reiciendis corporis architecto atque unde neque.</p>
+                        <img src="./images/empty-box.png" alt="Empty-Box">
                     </div>
-                    <button class="delete-btn" id="delete"><img src="./images/delete.png" alt=""></button>
                 </div>
             </div>
             <div class="scroll">
-                <button class="scr-btn"><img src="./images/left-arrow.png" alt=""></button>
-                <button class="scr-btn"><img src="./images/right-arrow.png" alt=""></button>
+                <button class="scr-btn" id="left"><img src="./images/left-arrow.png" alt=""></button>
+                <button class="scr-btn" id="right"><img src="./images/right-arrow.png" alt=""></button>
             </div>
+        </section>
+        <section class="quote">
+            <!-- <h2>Motivation Quote</h2> -->
+            <h4></h4>
+            <span>By: </span><span class="author"></span>
         </section>
     </main>
     <footer>&#169; Kushal Dictionary</footer>
